@@ -48,3 +48,7 @@ Fun, hands-on Python lessons designed to help a child learn to code step-by-step
 ### 🏆 Module 4: The Project
 - [Lesson 9: Final Project — The Cosmic Cafe](lessons/09-final-project.md)
   - Build a complete ordering system! Combines everything: variables, input, logic, and loops.
+
+### 🎮 Module 5: Practise Projects
+- 🐉 [Dragon's Tower](practise/dragons-tower/README.md)
+  - A four-step guided adventure project. Build a complete tower-climbing, monster-battling, dragon-slaying RPG using every concept from Lessons 1–9. Each step is an exercise file walking you through what to build — you write the Python yourself.

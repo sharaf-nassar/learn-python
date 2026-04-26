@@ -49,6 +49,12 @@ Fun, hands-on Python lessons designed to help a child learn to code step-by-step
 - [Lesson 9: Final Project — The Cosmic Cafe](lessons/09-final-project.md)
   - Build a complete ordering system! Combines everything: variables, input, logic, and loops.
 
-### 🎮 Module 5: Practise Projects
+### 💾 Module 5: Saving Your Progress
+- [Lesson 10: Saving Your Work — Files](lessons/10-files.md)
+  - Make your programs remember data between runs. Learn `open()` with `with`, reading and writing text files, checking if a file exists with `os.path.exists()`, and tuple unpacking.
+
+### 🎮 Module 6: Practise Projects
 - 🐉 [Dragon's Tower](practise/dragons-tower/README.md)
   - A four-step guided adventure project. Build a complete tower-climbing, monster-battling, dragon-slaying RPG using every concept from Lessons 1–9. Each step is an exercise file walking you through what to build — you write the Python yourself.
+- 🐣 [Pixel Pet](practise/pixel-pet/README.md)
+  - A three-milestone Tamagotchi-style virtual pet that you keep alive across days. Uses files for persistence (Lesson 10), random ASCII art, and 4 evolution stages. Less hand-holding than Dragon's Tower — each milestone is a mission spec, not a code skeleton.

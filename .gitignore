@@ -1,2 +1,9 @@
 .augment-guidelines
 
+# Python
+__pycache__/
+*.pyc
+
+# Runtime / save files (per-player, not source)
+pet_save.txt
+profile.txt

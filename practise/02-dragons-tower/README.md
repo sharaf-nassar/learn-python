@@ -1,6 +1,6 @@
 # 🐉 Dragon's Tower — Practice Project 🗡️
 
-> **A multi-step adventure project that puts everything you learned in Lessons 1–9 to the test.**
+> **A multi-step adventure project that puts everything you learned in Lessons 1–8 to the test.**
 
 ---
 
@@ -39,7 +39,7 @@ You'll build the game in **4 steps**. Each step adds new features to your game u
 
 ## What You'll Practice
 
-By the time you finish all 4 steps, you'll have used **every single concept** from Lessons 1–9:
+By the time you finish all 4 steps, you'll have used **every single concept** from Lessons 1–8:
 
 - ✅ `print()` and banners (Lesson 1)
 - ✅ Variables and `+=` updates (Lesson 2)

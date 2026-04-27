@@ -33,7 +33,7 @@ Your program must:
 5. Print a banner introducing the pet.
 6. Show the egg ASCII using `show_pet_art(species, stage)`.
 7. Print a stat sheet (name, species, stage label, age, all 4 stats).
-8. **Save** the pet to disk using `save_pet(...)`.
+8. **Save** the pet to disk by writing all 8 values to `pet_save.txt`, one per line. **You write this yourself** — see the file save section below.
 9. Print a friendly goodbye.
 
 ---
@@ -43,10 +43,10 @@ Your program must:
 From `pet_helpers`:
 - `random_species()` → returns a string like `"slime"`
 - `show_pet_art(species, stage)` → prints the ASCII art
-- `save_pet(name, species, stage, age, hunger, happiness, energy, cleanliness)` → writes to disk
 
 From the lessons:
 - `print()`, variables, `input()`, f-strings, `int()`, `if`/`elif`/`else`, `while True:` + `break`
+- **From [Lesson 9](../../lessons/09-files.md): `open()`, `with`, `f.write()`, `\n`** — you'll use these to save the pet
 
 ---
 
@@ -65,6 +65,36 @@ You only need stage 1 in this milestone, but write the translation anyway — Mi
 
 ---
 
+## 💾 Saving the Pet (Lesson 9 in action!)
+
+Save all 8 values to `pet_save.txt`, **one per line**, in this fixed order:
+
+```
+name
+species
+stage
+age
+hunger
+happiness
+energy
+cleanliness
+```
+
+Use the `with open(...)` + `f.write(...)` pattern from [Lesson 9, Part 4](../../lessons/09-files.md). The shape is exactly the same as the lesson's example — just with 8 values instead of 3:
+
+```python
+with open("pet_save.txt", "w") as f:
+    f.write(f"{name}\n")
+    f.write(f"{species}\n")
+    # TODO: write the other 6 values, each followed by \n
+```
+
+> ⚠️ **Don't forget the `\n`!** Without it, all 8 values run together on one line and you won't be able to read them back in Milestone 3.
+>
+> 💡 **The order matters!** Milestone 3's loading code will read in this exact order. If you swap, say, `hunger` and `happiness` here, the pet will load with weird stats next time.
+
+---
+
 ## 🎬 Sample Session
 
 Here's roughly what the player should see (your version can be styled differently):
@@ -78,14 +108,14 @@ A tiny egg sits on your desk...
 What will you name your new pet? Pip
 Welcome to the world, Pip!
 
-Rolling species... It's a SLIME!
+Rolling species... 🎲 Slime!
 
    _____
   /  .  \
   \_____/    egg
 
 ========================================
-       PIP'S CHARACTER SHEET
+       Pip's Character Sheet
 ========================================
 Name:        Pip
 Species:     Slime
@@ -120,10 +150,23 @@ Your program is done when:
 <summary>💡 Hints (open if you're stuck)</summary>
 
 - The "reject blank names" pattern is the same `while True:` + `break` you used in Step 1 of Dragon's Tower.
-- The species comes back as a lowercase string like `"slime"`. To show it nicely on the sheet (`Slime`), you can use `species.capitalize()`. (`.capitalize()` makes the first letter uppercase.)
+- The species comes back as a lowercase string like `"slime"`. To show it nicely on the sheet (`Slime`), use `species.capitalize()`. (`.capitalize()` makes the first letter uppercase and lowercases the rest.)
+- You can use `.capitalize()` on the name too. If the player types `"pip"` in lowercase, `name.capitalize()` gives you `"Pip"` — handy for the character sheet header `f"{name.capitalize()}'s Character Sheet"`.
 - For the stage label, an `if`/`elif`/`else` chain on the `stage` number works perfectly.
-- Don't forget the order when calling `save_pet(...)`! It's: name, species, stage, age, hunger, happiness, energy, cleanliness.
-- Test your save by deleting `pet_save.txt` and running again — a fresh file should appear.
+- For the save block, you'll have **8** `f.write(...)` lines — one per stat. Make sure each one ends with `\n`!
+- Use `"w"` mode (write) — it creates the file or overwrites if it exists. That's exactly what we want.
+- Test your save by deleting `pet_save.txt` and running again — a fresh file should appear with 8 lines.
+- After running, open `pet_save.txt` in VS Code. You should see something like:
+  ```
+  Pip
+  slime
+  1
+  0
+  20
+  80
+  80
+  80
+  ```
 
 </details>
 

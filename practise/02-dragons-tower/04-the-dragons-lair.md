@@ -36,7 +36,7 @@ Save your file as **`04_dragons_tower.py`**. Start by **copying everything from 
 
 ## 🧠 Concepts You'll Practice
 
-This step uses **everything you've learned**. By the end, your game will use every concept from Lessons 1–9.
+This step uses **everything you've learned**. By the end, your game will use every concept from Lessons 1–8.
 
 ---
 
@@ -44,16 +44,26 @@ This step uses **everything you've learned**. By the end, your game will use eve
 
 ### Part 1: A Battle Helper Pattern
 
-You're going to fight a lot of monsters in this step. Instead of copying the whole battle loop over and over, you'll use a **pattern**: set up monster variables, then run the same battle loop.
+You already have a battle loop! It's the `while True:` fight you wrote in **[Step 2](02-the-gate-guardian.md)** for the Grukk fight — Step 3 carried it into your file even though Step 3 didn't use it. **Scroll up in your `04_dragons_tower.py` file and find it now.** In this step you'll **reuse** that same loop for every monster instead of copying it five times. That's the **pattern**: set up monster variables, then run the same battle loop.
 
 > 💡 **Real game devs do this too!** They write the combat once and just change the monster.
 
-For each fight you'll set:
+**Rename it first.** Your Step 2 loop is hard-coded to one goblin — it uses `goblin_hp`, `goblin_attack`, and the word `"Grukk"`. Make it generic so it works for any monster:
+
+| Was (Grukk only) | Now (any monster) |
+|---|---|
+| `"Grukk"` (the word) | `{monster_name}` (f-string) |
+| `goblin_hp` | `monster_hp` |
+| `goblin_attack` | `monster_attack` |
+
+> 💡 **Tip:** Most editors have a "Find & Replace" (Ctrl+H or Cmd+H). Use it to swap `goblin_hp` → `monster_hp` and `goblin_attack` → `monster_attack` everywhere at once. Be careful with `"Grukk"` — those are inside f-strings, so replace them with `{monster_name}`.
+
+For each fight you'll set those three variables, then run the renamed battle loop:
 - `monster_name`
 - `monster_hp`
 - `monster_attack`
 
-Then run the battle loop. **Save your battle loop carefully** — you'll be using it 5 times!
+**Save your renamed battle loop carefully** — you'll be using it 5 times!
 
 ---
 
@@ -291,7 +301,7 @@ What do you do?
 
 ## 🏆 You Did It!
 
-If your game works — hero creation, gate fight, 5-floor climb, sneak option, dragon with two phases, and a victory or death ending — **you've built a complete Python adventure game using every concept from Lessons 1 to 9.**
+If your game works — hero creation, gate fight, 5-floor climb, sneak option, dragon with two phases, and a victory or death ending — **you've built a complete Python adventure game using every concept from Lessons 1 to 8.**
 
 That is a *huge* accomplishment.
 

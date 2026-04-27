@@ -281,5 +281,7 @@ print(f"🎉 You got it in {attempts} tries!")
 
 If you can write `while` loops that repeat until a condition is met, you're ready!
 
-**Next up: Lesson 9 — Final Project (Build a Complete Game!)**
+**Next up: Lesson 9 — Files** (saving and loading data between program runs).
+
+> 💡 **Take a victory lap first!** You've now learned all the core building blocks. Try the **[Cosmic Cafe](../practise/01-cosmic-cafe/README.md)** practice project — it uses everything from Lessons 1–8 and is your first chance to build a complete program from scratch.
 

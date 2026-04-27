@@ -5,70 +5,17 @@ You don't need to read or understand this file's internals.
 Just put it in the same folder as your `pet.py` file and call the
 functions like this at the top of your code:
 
-    from pet_helpers import (
-        save_exists, load_pet, save_pet, delete_save,
-        random_species, show_pet_art,
-    )
+    from pet_helpers import random_species, show_pet_art
 
 This file uses some Python features you haven't learned yet
-(functions, lists, dictionaries) — that's fine. You're using
-them, not writing them.
+(functions, dictionaries) — that's fine. You're using them,
+not writing them.
+
+You'll write the save/load logic yourself in `pet.py`, using
+what you learned in Lesson 9 (Files).
 """
 
-import os
 import random
-
-
-SAVE_FILE = "pet_save.txt"
-
-
-# ---------------------------------------------------------------------------
-# Save / load helpers
-# ---------------------------------------------------------------------------
-
-def save_exists():
-    """Return True if there is a saved pet on disk, False otherwise."""
-    return os.path.exists(SAVE_FILE)
-
-
-def load_pet():
-    """Read the saved pet and return 8 values in this order:
-
-        name, species, stage, age, hunger, happiness, energy, cleanliness
-
-    Use tuple unpacking on the result:
-
-        name, species, stage, age, hunger, happiness, energy, cleanliness = load_pet()
-    """
-    with open(SAVE_FILE, "r") as f:
-        name = f.readline().strip()
-        species = f.readline().strip()
-        stage = int(f.readline())
-        age = int(f.readline())
-        hunger = int(f.readline())
-        happiness = int(f.readline())
-        energy = int(f.readline())
-        cleanliness = int(f.readline())
-    return name, species, stage, age, hunger, happiness, energy, cleanliness
-
-
-def save_pet(name, species, stage, age, hunger, happiness, energy, cleanliness):
-    """Write the pet's current state to disk. Pass all 8 values in order."""
-    with open(SAVE_FILE, "w") as f:
-        f.write(f"{name}\n")
-        f.write(f"{species}\n")
-        f.write(f"{stage}\n")
-        f.write(f"{age}\n")
-        f.write(f"{hunger}\n")
-        f.write(f"{happiness}\n")
-        f.write(f"{energy}\n")
-        f.write(f"{cleanliness}\n")
-
-
-def delete_save():
-    """Erase the save file (use this when the pet dies)."""
-    if save_exists():
-        os.remove(SAVE_FILE)
 
 
 # ---------------------------------------------------------------------------

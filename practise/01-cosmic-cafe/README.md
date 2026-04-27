@@ -1,24 +1,37 @@
-# Lesson 9: Final Project — Build a Complete Game! 🎮🏆
+# 🚀 Cosmic Cafe — Practice Project 🍔
 
-## Goal
-
-Put ALL your Python skills to the test! You'll build a complete project that uses everything you've learned: variables, input, f-strings, types, random numbers, if/elif/else, and while loops.
-
-## 🎯 What You'll Practice
-
-- **Variables** and **f-strings** (Lessons 1-3)
-- **Type conversion** with `int()` (Lesson 4)
-- **Random numbers** with `random.randint()` (Lesson 5)
-- **If/elif/else** logic and `and`/`or` (Lessons 6-7)
-- **While loops** and `break` (Lesson 8)
+> **Your first complete Python project. Build an ordering system for the busiest restaurant in the galaxy — uses everything you've learned through Lesson 8.**
 
 ---
 
-## 🌟 Main Project: The Cosmic Cafe 🚀🍔
+## The Story
 
-You are the manager of "The Cosmic Cafe," the busiest restaurant in the galaxy! Build a smart ordering system that takes orders, applies deals, and calculates prices.
+You are the manager of "The Cosmic Cafe," the busiest restaurant in the galaxy! Customers want to order food, you want to give them combo deals, and the bill needs to come out right.
 
-We'll build this step-by-step. Complete each part before moving to the next!
+Time to build a smart ordering system from scratch.
+
+---
+
+## 🎯 What You'll Practice
+
+- `print()` and banners (Lesson 1)
+- **Variables** and `+=` updates (Lesson 2)
+- **Input** and **f-strings** (Lesson 3)
+- **Type conversion** with `int()` (Lesson 4)
+- **If/elif/else** decisions (Lesson 6)
+- **`and`/`or`/`not`**, nested ifs (Lesson 7)
+
+---
+
+## Difficulty: 🔥 (~4/10)
+
+The easiest of the three practice projects — a great first project right after Lesson 8. No save files, no random numbers, no loops needed.
+
+---
+
+## How to Build It
+
+Save your code as **`cafe.py`**. Build it **step-by-step** — complete each part before moving to the next!
 
 ---
 
@@ -214,11 +227,12 @@ If you completed the Cosmic Cafe, you've mastered the fundamentals of Python:
 
 ## What's Next?
 
-Here are some ideas to keep learning:
-- **Lists** — Store multiple items in one variable
-- **For loops** — A different way to repeat code
-- **Functions** — Reusable blocks of code
-- **Files** — Save and load data
+You've got the basics down! Try one of these next:
+
+- 💾 **[Lesson 9: Files](../../lessons/09-files.md)** — make your programs save data between runs
+- 📋 **[Lesson 10: Lists](../../lessons/10-lists.md)** — store many things in one variable
+- 🐉 **[Dragon's Tower](../02-dragons-tower/README.md)** — bigger adventure project that still only uses Lessons 1-8
+- 🐣 **[Pixel Pet](../03-pixel-pet/README.md)** — virtual pet that survives across days (uses the Files lesson)
 
 Keep coding and have fun! 🐍✨
 

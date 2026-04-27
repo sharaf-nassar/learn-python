@@ -1,4 +1,4 @@
-# Lesson 10: Saving Your Work — Files 💾
+# Lesson 9: Saving Your Work — Files 💾
 
 ## Goal
 
@@ -51,6 +51,30 @@ with open("hello.txt", "w") as f:
 
 > ⚠️ **Important:** `"w"` mode **erases** the file first if it already exists. It's a fresh write every time! If you want to add to an existing file instead, use `"a"` (append) mode.
 
+> 💪 **Try It! — Quick Note**
+>
+> Build a tiny "save a note" program. Ask for one line of text, then save it to `note.txt`.
+>
+> ```python
+> note = input("Type a note to save: ")
+>
+> # TODO: open "note.txt" in write mode and write the note
+> # Don't forget to add \n at the end!
+>
+> print("✅ Saved!")
+> ```
+>
+> Run it. Open `note.txt` in VS Code to verify your note is there. **Run it again with a different note** — what happened to the first one? (That's `"w"` mode at work — it overwrites every time.)
+>
+> <details>
+> <summary>Show solution</summary>
+>
+> ```python
+> with open("note.txt", "w") as f:
+>     f.write(f"{note}\n")
+> ```
+> </details>
+
 ---
 
 ## Part 3: Reading from a File
@@ -67,6 +91,26 @@ print(text)   # Shows: Hello, world!
 `f.read()` reads everything in the file and gives it back to you as a string.
 
 **The pattern is always the same:** `open` the file, `with` block, do your read or write inside, and Python handles closing.
+
+> 💪 **Try It! — Round-Trip**
+>
+> Save a string to a file, then read it back **in the same program**. This is the basic pattern every save/load cycle uses.
+>
+> ```python
+> # Save
+> with open("test.txt", "w") as f:
+>     f.write("Hello from yesterday!")
+>
+> # Read
+> with open("test.txt", "r") as f:
+>     content = f.read()
+>
+> print(f"The file says: {content}")
+> ```
+>
+> Expected output: `The file says: Hello from yesterday!`
+>
+> Now change the string in the `f.write(...)` call to something else and run again. The new string should appear in the output. **What you write is exactly what you read back** — that's the foundation of every save system.
 
 ---
 
@@ -117,6 +161,92 @@ print(f"Score: {saved_score}, Level: {saved_level}")
 >
 > 💡 **Files only store text!** Even numbers are saved as text. That's why `int()` is needed when reading them back.
 
+> 🤔 **Predict First, Then Run**
+>
+> Imagine `data.txt` already exists with these exact lines:
+>
+> ```
+> Luna
+> 9000
+> 3
+> ```
+>
+> What does this code print?
+>
+> ```python
+> with open("data.txt", "r") as f:
+>     a = f.readline().strip()
+>     b = int(f.readline())
+>     c = int(f.readline())
+>
+> print(a)
+> print(b + c)
+> ```
+>
+> <details>
+> <summary>Show answers</summary>
+>
+> - `Luna` — first line, `.strip()` removes the trailing `\n`
+> - `9003` — `b` is `9000` (int from line 2), `c` is `3` (int from line 3), so `b + c` is `9003`
+>
+> **Key idea:** `f.readline()` advances to the next line each time. Three calls = three lines, in order.
+> </details>
+
+> 💪 **Mini-challenge: Player Profile**
+>
+> Build a profile saver. Ask for:
+> - Player name (string)
+> - High score (whole number)
+> - Lives remaining (whole number)
+>
+> Save them to `profile.txt`, then **immediately read them back** and print a friendly summary.
+>
+> ```python
+> name = input("Player name: ")
+> high_score = int(input("High score: "))
+> lives = int(input("Lives remaining: "))
+>
+> # TODO: save the 3 values to profile.txt, one per line
+>
+> # TODO: read them back into 3 new variables (saved_name, saved_score, saved_lives)
+>
+> # TODO: print "Welcome back, {saved_name}! Score: {saved_score}, Lives: {saved_lives}"
+> ```
+>
+> Sample run:
+> ```
+> Player name: Luna
+> High score: 9000
+> Lives remaining: 3
+> Welcome back, Luna! Score: 9000, Lives: 3
+> ```
+>
+> <details>
+> <summary>Show solution</summary>
+>
+> ```python
+> name = input("Player name: ")
+> high_score = int(input("High score: "))
+> lives = int(input("Lives remaining: "))
+>
+> # Save
+> with open("profile.txt", "w") as f:
+>     f.write(f"{name}\n")
+>     f.write(f"{high_score}\n")
+>     f.write(f"{lives}\n")
+>
+> # Load
+> with open("profile.txt", "r") as f:
+>     saved_name = f.readline().strip()
+>     saved_score = int(f.readline())
+>     saved_lives = int(f.readline())
+>
+> print(f"Welcome back, {saved_name}! Score: {saved_score}, Lives: {saved_lives}")
+> ```
+>
+> 💡 **Why save then immediately load?** It's a sanity check that your save format works. If the loaded values match what you typed, you know your file format is correct. Real game devs do this all the time during development.
+> </details>
+
 ---
 
 ## Part 5: Checking if a File Exists
@@ -144,6 +274,49 @@ else:
 
 **Don't forget `import os` at the top of your file** — just like `import random`!
 
+> 💡 **Bonus tip — deleting a file:** `os` also has `os.remove("file.txt")` which deletes a file. Useful when a save is no longer needed (you'll see this in the practice projects).
+
+> 💪 **Try It! — Save Check**
+>
+> Build a program that tells you whether `profile.txt` (from the previous mini-challenge) exists yet.
+>
+> ```python
+> import os
+>
+> if os.path.exists("profile.txt"):
+>     print("✅ Save file found!")
+> else:
+>     print("❌ No save yet.")
+> ```
+>
+> Test all three states:
+> 1. Run as-is (if you did the Player Profile challenge, you'll see ✅)
+> 2. **Delete `profile.txt`** (right-click in VS Code → Delete) and run again — you'll see ❌
+> 3. Run the Player Profile challenge again, then run this — back to ✅
+>
+> **Why this matters:** every "load if exists, otherwise start fresh" pattern in real apps starts with this exact check.
+
+> 💪 **Try It! — Reset Switch**
+>
+> Extend the previous Try It. If the save file exists, ask the user if they want to delete it.
+>
+> ```python
+> import os
+>
+> if os.path.exists("profile.txt"):
+>     print("✅ Save file found!")
+>     answer = input("Delete it? (y/n): ")
+>     if answer == "y":
+>         os.remove("profile.txt")
+>         print("🗑️  Deleted!")
+>     else:
+>         print("👍 Keeping it.")
+> else:
+>     print("❌ No save to delete.")
+> ```
+>
+> Run it. Try both `y` and `n`. After a `y`, run again — the file should be gone.
+
 ---
 
 ## Part 6: Tuple Unpacking
@@ -166,15 +339,65 @@ print(c)   # 30
 
 The rule: **the same number of variables on the left as values on the right**, separated by commas.
 
-This is useful when a single function gives you back several values at once. You'll see it in the practice projects when a helper function returns a whole bunch of pet stats at the same time:
+It's also handy for **swapping two variables** without needing a temp:
 
 ```python
-# Pretend a helper function returns three things at once.
-# Tuple unpacking lets us catch them all in one line:
-pet_name, pet_age, pet_hunger = some_load_function()
+left = "sword"
+right = "shield"
+
+left, right = right, left   # swap!
+
+print(left)    # shield
+print(right)   # sword
 ```
 
-Same idea — three variables on the left, three values on the right.
+You'll see tuple unpacking again later — it's especially useful when working with lists and functions. For now, just remember it exists: **same number of names on the left, same number of values on the right.**
+
+> 🤔 **Predict First, Then Run**
+>
+> What does each `print()` show?
+>
+> ```python
+> a, b, c = 10, 20, 30
+> print(a)              # ?
+> print(b + c)          # ?
+>
+> x, y = 5, 8
+> x, y = y, x          # swap!
+> print(x, y)          # ?
+> ```
+>
+> <details>
+> <summary>Show answers</summary>
+>
+> - `10` — the first value goes into `a`
+> - `50` — `b` is `20` and `c` is `30`, so `b + c` is `50`
+> - `8 5` — the swap exchanged them. After the swap, `x` is `8` and `y` is `5`. (Without tuple unpacking, you'd need a temporary variable to swap!)
+> </details>
+
+> 💪 **Try It! — Treasure Coordinates**
+>
+> A treasure is buried at coordinates that come back as a pair of values. Use tuple unpacking to put each coordinate in its own variable.
+>
+> ```python
+> coords = 3, 7        # two values bundled together
+>
+> # TODO: unpack into x and y using tuple unpacking
+> # TODO: print "X = 3, Y = 7" using f-string
+> ```
+>
+> Hint: the rule is the same as `a, b, c = 1, 2, 3` — same number of names on left as values on the right.
+>
+> <details>
+> <summary>Show solution</summary>
+>
+> ```python
+> x, y = coords
+> print(f"X = {x}, Y = {y}")
+> ```
+>
+> 💡 **Same number of names on each side or it crashes!** Try `x, y, z = coords` (three names, two values) — Python raises `ValueError: not enough values to unpack`. The shapes must match.
+> </details>
 
 ---
 
@@ -244,8 +467,8 @@ Build a small program that asks for the player's **name**, **favorite color**, a
 
 ---
 
-## ✅ Ready for Module 6?
+## ✅ Ready for Lesson 10?
 
 If you can save data to a file and read it back the next time your program runs, you've unlocked one of the most powerful skills in programming. Real apps live and die by this!
 
-**Next up: Module 6 — Practise Projects** (the next project, **Pixel Pet**, uses files to keep your virtual pet alive across days!)
+**Next up: Lesson 10 — Lists** (and once you've learned that, the **Pixel Pet** practice project uses files to keep your virtual pet alive across days!)
